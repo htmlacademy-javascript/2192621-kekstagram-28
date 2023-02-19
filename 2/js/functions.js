@@ -1,20 +1,14 @@
-// Функция для проверки длины строки.
-const getStringlength = (stringValue, length) => (stringValue.length) <= length;
+const checkStringLength = (string, length) => (string.length) <= length;
 
-getStringlength('проверяемая строка', 20);
+checkStringLength('проверяемая строка', 18);
 
-// Функция для проверки, является ли строка палиндромом.
-const isPalindrome = (stringValue) => {
-  let stringValueReverse = '';
-  for (let i = stringValue.length - 1; i >= 0; i--) {
-    stringValueReverse += stringValue[i];
-  }
-  return (stringValue.toLowerCase().replaceAll(' ', '') === stringValueReverse.toLowerCase().replaceAll(' ', ''));
+const checkIsPalindrome = (string) => {
+  string = string.toLowerCase().replace(/\s/g, '');
+  return string === string.split('').reverse().join('');
 };
 
-isPalindrome('Лёша на полке клопа нашёл ');
+checkIsPalindrome('Лёша на полке клопа нашёл ');
 
-// Функция, которая принимает строку, извлекает содержащиеся в ней цифры.
 const getNumFromStr = (stringValue) => {
   const result = String(stringValue).replace(/[^0-9]/g, '');
   return parseInt(result, 10);
@@ -22,5 +16,16 @@ const getNumFromStr = (stringValue) => {
 
 getNumFromStr(-1.5);
 
-// Функция для формирования адресов файлов
+const creatNewString = (string, length, extention) => {
+  if (string.length >= length) {
+    return string;
+  }
 
+  while (string.length < length) {
+    const extentionLength = length - string.length;
+    string = extention.slice(0, extentionLength) + string;
+  }
+  return string;
+};
+
+creatNewString('q', 4, 'werty');
