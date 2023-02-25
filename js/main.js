@@ -87,7 +87,6 @@ const getRandomId = (min, max) => {
 };
 
 const generateCommentId = getRandomId(1, 1000);
-const generatePhotoId = getRandomId(1, 25);
 
 const getRandomURL = (min, max) => {
   const previousURL = [];
@@ -105,8 +104,6 @@ const getRandomURL = (min, max) => {
   };
 };
 
-getRandomURL();
-
 const getCommentsGenerator = () => ({
   id: generateCommentId(),
   avatar: `img/avatar-${getRandomInteger(1, 6)}.svg`,
@@ -114,10 +111,9 @@ const getCommentsGenerator = () => ({
   name: getRandomArrayElement(NAMES),
 });
 
-getCommentsGenerator();
-
 const getPhotoDescription = () => {
   const photoUrl = getRandomURL(1, 25);
+  const generatePhotoId = getRandomId(1, 25);
 
   return {
     id: generatePhotoId(),
@@ -127,8 +123,6 @@ const getPhotoDescription = () => {
     comments: getCommentsGenerator(),
   };
 };
-
-getPhotoDescription();
 
 const similarGetPhotoDescription = () => Array.from({ length: SIMILAR_GET_PHOTO_DESCRIPTION_COUNT }, getPhotoDescription);
 
