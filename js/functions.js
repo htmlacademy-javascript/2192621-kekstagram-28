@@ -1,20 +1,17 @@
 const checkStringLength = (string, length) => (string.length) <= length;
 
-checkStringLength('проверяемая строка', 18);
+checkStringLength();
 
 const checkIsPalindrome = (string) => {
   string = string.toLowerCase().replace(/\s/g, '');
   return string === string.split('').reverse().join('');
 };
 
-checkIsPalindrome('Лёша на полке клопа нашёл ');
+checkIsPalindrome();
 
-const getNumFromStr = (stringValue) => {
-  const result = String(stringValue).replace(/[^0-9]/g, '');
-  return parseInt(result, 10);
-};
+const getNumFromStr = (string) => parseInt(String(string).replace(/[^0-9]/g, ''), 10);
 
-getNumFromStr(-1.5);
+getNumFromStr();
 
 const creatNewString = (string, length, extention) => {
   if (string.length >= length) {
@@ -28,4 +25,4 @@ const creatNewString = (string, length, extention) => {
   return string;
 };
 
-creatNewString('q', 4, 'werty');
+creatNewString();
