@@ -1,6 +1,8 @@
 const getRandomInteger = (min, max) => Math.floor(Math.random() * (max - min + 1) + min);
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
 const checkStringLength = (string, length) => string.length <= length;
 
 const checkIsPalindrome = (string) => {
@@ -22,4 +24,4 @@ const createNewString = (string, length, extension) => {
   return string;
 };
 
-export { getRandomInteger, getRandomArrayElement, checkStringLength, checkIsPalindrome, getNumFromStr, createNewString };
+export { getRandomInteger, getRandomArrayElement, checkStringLength, checkIsPalindrome, getNumFromStr, createNewString, isEscapeKey };
