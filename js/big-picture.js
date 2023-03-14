@@ -9,8 +9,8 @@ const commentTemplate = document.querySelector('#comment').content.querySelector
 const socialCommentCount = document.querySelector('.social__comment-count');
 const commentsLoaderBtn = document.querySelector('.comments-loader');
 
-let commentsLength = 0;
 let showingComments = 0;
+let comments = [];
 
 const fillCommentData = (comment) => {
   const commentClone = commentTemplate.cloneNode(true);
@@ -20,20 +20,21 @@ const fillCommentData = (comment) => {
   return commentClone;
 };
 
-const renderComments = (comments) => {
-  comments.forEach((comment) => commentsList.append(fillCommentData(comment)));
+const renderComments = (commentCurrent) => {
+  commentCurrent.forEach((comment) => commentsList.append(fillCommentData(comment)));
 };
 
 const fillCommentsCount = () => {
-  socialCommentCount.innerHTML = `${showingComments} из <span class="comments-count">${commentsLength}</span> комментариев`;
+  socialCommentCount.innerHTML = `${showingComments} из <span class="comments-count">${comments.length}</span> комментариев`;
 };
 
-const showComments = (comments) => {
+const showComments = () => {
+  const arrayComments = comments.slice(showingComments, showingComments + COMMENT_COUNTER);
   showingComments += COMMENT_COUNTER;
-  const arrayComments = comments.slice(0, showingComments);
+  showingComments = Math.min(showingComments, comments.length);
   renderComments(arrayComments);
   fillCommentsCount();
-  if (showingComments >= commentsLength) {
+  if (showingComments >= comments.length) {
     commentsLoaderBtn.classList.add('hidden');
   } else {
     commentsLoaderBtn.classList.remove('hidden');
@@ -47,8 +48,8 @@ const fillPictureData = (photo) => {
   bigPicture.querySelector('.social__caption').textContent = photo.description;
 
   commentsList.innerHTML = '';
-  commentsLength = photo.comments.length;
-  showComments(photo.comments);
+  comments = photo.comments;
+  showComments();
 };
 
 const closeBigPicture = () => {
@@ -58,8 +59,8 @@ const closeBigPicture = () => {
   commentsLoaderBtn.removeEventListener('click', onCommentsLoaderBtn);
   bigPictureCloseBtn.removeEventListener('click', onBigPictureCloseClick);
   document.removeEventListener('keydown', onBigPictureEscKeydown);
-  commentsLength = 0;
   showingComments = 0;
+  comments = [];
 };
 
 const openBigPicture = (photo) => {
@@ -79,7 +80,7 @@ function onBigPictureCloseClick (evt) {
 }
 
 function onBigPictureEscKeydown (evt) {
-  if (isEscapeKey(evt)) {
+  if (isEscapeKey(evt) && !evt.target.closest('.social__footer-text')) {
     evt.preventDefault();
     closeBigPicture();
   }
@@ -87,7 +88,7 @@ function onBigPictureEscKeydown (evt) {
 
 function onCommentsLoaderBtn (evt) {
   evt.preventDefault();
-  renderComments();
+  showComments();
 }
 
 const onPictureClick = (photo) => {
