@@ -67,9 +67,9 @@ const openBigPicture = (photo) => {
   bigPicture.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
-  commentsLoaderBtn.addEventListener('click', onCommentsLoaderBtn);
   bigPictureCloseBtn.addEventListener('click', onBigPictureCloseClick);
   document.addEventListener('keydown', onBigPictureEscKeydown);
+  commentsLoaderBtn.addEventListener('click', onCommentsLoaderBtn);
 
   fillPictureData(photo);
 };
