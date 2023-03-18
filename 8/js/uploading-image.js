@@ -29,7 +29,7 @@ function onEditImageCloseButtonClick(evt) {
   closeEditingImage();
 }
 
-function onUploadPhoto(evt) {
+function onUploadPhotoChange(evt) {
   evt.preventDefault();
   openEditingImage();
 }
@@ -49,7 +49,7 @@ function onEditImageFormSubmit (evt) {
 imgUploadForm.addEventListener('submit', onEditImageFormSubmit);
 
 const loadPhoto = () => {
-  imgUploadInput.addEventListener('submit', onUploadPhoto);
+  imgUploadInput.addEventListener('change', onUploadPhotoChange);
 };
 
 export {loadPhoto};
