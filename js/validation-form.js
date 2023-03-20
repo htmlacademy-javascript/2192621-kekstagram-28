@@ -31,6 +31,6 @@ pristine.addValidator(hashtag, checkIsHashtagRegexp, 'неверный хэш-т
 pristine.addValidator(hashtag, checkHashtagLength, `нельзя указать больше ${MAX_HASHTAG} хэш-тегов`);
 pristine.addValidator(hashtag, checkHashtagSame, 'один и тот же хэш-тег не может быть использован дважды');
 
-const validate = () => !pristine.validate();
+const validateForm = () => pristine.validate();
 
-export { validate };
+export { validateForm };

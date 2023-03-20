@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { validate } from './validation-form.js';
+import { validateForm } from './validation-form.js';
 
 const editImage = document.querySelector('.img-upload__overlay');
 const imgUploadInput = document.querySelector('.img-upload__input');
@@ -42,7 +42,7 @@ function onEditImageEscKeydown(evt) {
 }
 
 function onEditImageFormSubmit(evt) {
-  if (validate()) {
+  if (!validateForm()) {
     evt.preventDefault();
   }
 }
