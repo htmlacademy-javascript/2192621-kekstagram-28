@@ -41,9 +41,10 @@ function onEditImageEscKeydown(evt) {
   }
 }
 
-function onEditImageFormSubmit (evt) {
-  evt.preventDefault();
-  validate();
+function onEditImageFormSubmit(evt) {
+  if (validate()) {
+    evt.preventDefault();
+  }
 }
 
 imgUploadForm.addEventListener('submit', onEditImageFormSubmit);
@@ -52,4 +53,4 @@ const loadPhoto = () => {
   imgUploadInput.addEventListener('change', onUploadPhotoChange);
 };
 
-export {loadPhoto};
+export { loadPhoto };
