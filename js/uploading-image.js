@@ -1,5 +1,7 @@
 import { isEscapeKey } from './util.js';
 import { validateForm } from './validation-form.js';
+import { resetScale } from './scale.js';
+import { resetEffects } from './effect.js';
 
 const editImage = document.querySelector('.img-upload__overlay');
 const imgUploadInput = document.querySelector('.img-upload__input');
@@ -10,6 +12,9 @@ const openEditingImage = () => {
   editImage.classList.remove('hidden');
   document.body.classList.add('modal-open');
 
+  resetScale();
+  resetEffects();
+
   imgUploadCloseButton.addEventListener('click', onEditImageCloseButtonClick);
   document.addEventListener('keydown', onEditImageEscKeydown);
 };
@@ -19,6 +24,9 @@ const closeEditingImage = () => {
 
   editImage.classList.add('hidden');
   document.body.classList.remove('modal-open');
+
+  resetScale();
+  resetEffects();
 
   imgUploadCloseButton.removeEventListener('click', onEditImageCloseButtonClick);
   document.removeEventListener('keydown', onEditImageEscKeydown);
