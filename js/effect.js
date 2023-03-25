@@ -32,7 +32,7 @@ const EFFECTS = [
     unit: '%',
   },
   {
-    name: 'fobos',
+    name: 'phobos',
     style: 'blur',
     min: 0,
     max: 3,
@@ -49,8 +49,8 @@ const EFFECTS = [
   },
 ];
 
-const DEFAULT_EFFECT = EFFECTS[0];
-let chosenEffect = DEFAULT_EFFECT;
+const defaultEffect = EFFECTS[0];
+let chosenEffect = defaultEffect;
 
 const imageElement = document.querySelector('.img-upload__preview img');
 const effectsElement = document.querySelector('.effects');
@@ -58,7 +58,7 @@ const sliderElement = document.querySelector('.effect-level__slider');
 const sliderContainerElement = document.querySelector('.img-upload__effect-level ');
 const effectLevelElement = document.querySelector('.effect-level__value');
 
-const isDefault = () => chosenEffect === DEFAULT_EFFECT;
+const isDefault = () => chosenEffect === defaultEffect;
 
 const showSlider = () => {
   sliderContainerElement.classList.remove('hidden');
@@ -97,23 +97,23 @@ const onEffectsChange = (evt) => {
 const onSliderUpdate = () => {
   const sliderValue = sliderElement.noUiSlider.get();
   imageElement.style.filter = isDefault()
-    ? DEFAULT_EFFECT.style
+    ? defaultEffect.style
     : `${chosenEffect.style}(${sliderValue}${chosenEffect.unit})`;
   effectLevelElement.value = sliderValue;
 };
 
 const resetEffects = () => {
-  chosenEffect = DEFAULT_EFFECT;
+  chosenEffect = defaultEffect;
   updateSlider();
 };
 
 noUiSlider.create(sliderElement, {
   range: {
-    min: DEFAULT_EFFECT.min,
-    max: DEFAULT_EFFECT.max,
+    min: defaultEffect.min,
+    max: defaultEffect.max,
   },
-  start: DEFAULT_EFFECT.max,
-  step: DEFAULT_EFFECT.step,
+  start: defaultEffect.max,
+  step: defaultEffect.step,
   connect: 'lower',
 });
 hideSlider();
