@@ -1,9 +1,9 @@
-import { isEscapeKey, showAlert } from './util.js';
+import { isEscapeKey } from './util.js';
 import { validateForm, resetInputValue } from './validation-form.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effect.js';
 import { sendData } from './api.js';
-import { createSuccessMessage } from './fetch-message.js';
+import { createErrorMessage, createSuccessMessage } from './fetch-message.js';
 
 const editImage = document.querySelector('.img-upload__overlay');
 const imgUploadInput = document.querySelector('.img-upload__input');
@@ -67,9 +67,9 @@ const unblockSubmitButton = () => {
   submitButton.textContent = submitButtonTextContent.DEFAULT;
 };
 
-// function onError() {
-//   createErrorMessage();
-// }
+function onError() {
+  createErrorMessage();
+}
 
 function onSuccess() {
   closeEditingImage();
@@ -83,10 +83,7 @@ function onEditImageFormSubmit(evt) {
     blockSubmitButton();
     sendData(new FormData(evt.target))
       .then(onSuccess)
-      .catch((err) => {
-        showAlert(err.message);
-      })
-      // .catch(onError)
+      .catch(onError)
       .finally(unblockSubmitButton);
   }
 }
