@@ -1,5 +1,5 @@
 import { isEscapeKey } from './util.js';
-import { validateForm, resetInputValue } from './validation-form.js';
+import { validateForm, resetPristine, resetInputValue } from './validation-form.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effect.js';
 import { sendData } from './api.js';
@@ -35,6 +35,7 @@ const closeEditingImage = () => {
 
   resetScale();
   resetEffects();
+  resetPristine();
 
   imgUploadCloseButton.removeEventListener('click', onEditImageCloseButtonClick);
   document.removeEventListener('keydown', onEditImageEscKeydown);
