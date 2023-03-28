@@ -9,31 +9,21 @@ const createErrorMessage = () => {
   const errorMessage = errorTemplate.cloneNode(true);
   renderMessage(errorMessage);
 
+  document.querySelector('.error').addEventListener('click', onErrorMessageClick);
   document.addEventListener('keydown', onErrorMessageKeydown);
-  document.addEventListener('click', onErrorMessageClick);
 };
+
+const removeErrorMessage = () => document.querySelector('.error').remove();
 
 const createSuccessMessage = () => {
   const successMessage = successTemplate.cloneNode(true);
   renderMessage(successMessage);
 
   document.addEventListener('keydown', onSuccessMessageKeydown);
-  document.addEventListener('click', onSuccessMessageClick);
+  document.querySelector('.success').addEventListener('click', onSuccessMessageClick);
 };
 
-const removeErrorMessage = () => {
-  document.removeEventListener('keydown', onErrorMessageKeydown);
-  document.querySelector('.error').removeEventListener('click', onErrorMessageKeydown);
-
-  document.querySelector('.error').remove();
-};
-
-const removeSuccessMessage = () => {
-  document.removeEventListener('keydown', onSuccessMessageKeydown);
-  document.querySelector('.success').removeEventListener('click', onSuccessMessageClick);
-
-  document.querySelector('.success').remove();
-};
+const removeSuccessMessage = () => document.querySelector('.success').remove();
 
 function onErrorMessageKeydown(evt) {
   if (isEscapeKey(evt)) {

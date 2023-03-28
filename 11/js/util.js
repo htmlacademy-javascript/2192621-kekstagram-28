@@ -26,25 +26,4 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-const checkStringLength = (string, length) => string.length <= length;
-
-const checkIsPalindrome = (string) => {
-  string = string.toLowerCase().replace(/\s/g, '');
-  return string === string.split('').reverse().join('');
-};
-
-const getNumFromStr = (string) => parseInt(String(string).replace(/[^0-9]/g, ''), 10);
-
-const createNewString = (string, length, extension) => {
-  if (string.length >= length) {
-    return string;
-  }
-
-  while (string.length < length) {
-    const extensionLength = length - string.length;
-    string = extension.slice(0, extensionLength) + string;
-  }
-  return string;
-};
-
-export { getRandomInteger, getRandomArrayElement, checkStringLength, checkIsPalindrome, getNumFromStr, createNewString, isEscapeKey, showAlert };
+export { getRandomInteger, getRandomArrayElement, isEscapeKey, showAlert };
