@@ -13,7 +13,7 @@ const pristine = new Pristine(imgUploadForm, {
   errorTextClass: 'img-upload__error'
 });
 
-const isValidComment = (comment) => comment.length <= MAX_COMMENTS_LENGTH; //эта функция не работает....
+const isValidComment = (comment) => comment.length <= MAX_COMMENTS_LENGTH;
 
 const createHashtagArray = (value) => value.trim().split(' ').filter((item) => item);
 
