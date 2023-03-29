@@ -53,6 +53,9 @@ function onUploadPhotoChange(evt) {
 
 function onEditImageEscKeydown(evt) {
   if (isEscapeKey(evt) && !evt.target.closest('.text__hashtags') && !evt.target.closest('.text__description')) {
+    if(document.querySelector('.error')) {
+      return;
+    }
     evt.preventDefault();
     closeEditingImage();
   }
