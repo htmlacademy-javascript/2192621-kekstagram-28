@@ -43,6 +43,7 @@ pristine.addValidator(textDescription, isValidComment, `Длинна комме�
 const resetInputValue = () => {
   hashtagField.value = '';
   textDescription.value = '';
+  imgUploadForm.reset();
 };
 
 const resetPristine = () => pristine.reset();
