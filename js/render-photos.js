@@ -3,7 +3,6 @@ import { onPictureClick } from './big-picture.js';
 const picturesContainer = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 
-
 const createPhoto = (photo) => {
   const pictureElement = pictureTemplate.cloneNode(true);
   pictureElement.querySelector('.picture__img').src = photo.url;
