@@ -1,9 +1,15 @@
 import { isEscapeKey } from './util.js';
-import { validateForm, resetPristine, resetInputValue } from './validation-form.js';
+import { validateForm, resetPristine } from './validation-form.js';
 import { resetScale } from './scale.js';
 import { resetEffects } from './effect.js';
 import { sendData } from './api.js';
 import { createErrorMessage, createSuccessMessage } from './fetch-message.js';
+import { loadImg } from './upload-img-preview.js';
+
+const submitButtonTextContent = {
+  DEFAULT: 'Опубликовать',
+  SENDING: 'Загружаю...'
+};
 
 const editImage = document.querySelector('.img-upload__overlay');
 const imgUploadInput = document.querySelector('.img-upload__input');
@@ -11,15 +17,9 @@ const imgUploadCloseButton = document.querySelector('.img-upload__cancel');
 const imgUploadForm = document.querySelector('.img-upload__form');
 const submitButton = document.querySelector('.img-upload__submit');
 
-const submitButtonTextContent = {
-  DEFAULT: 'Опубликовать',
-  SENDING: 'Загружаю...'
-};
-
 const openEditingImage = () => {
   editImage.classList.remove('hidden');
   document.body.classList.add('modal-open');
-
   resetScale();
   resetEffects();
 
@@ -28,11 +28,9 @@ const openEditingImage = () => {
 };
 
 const closeEditingImage = () => {
-  imgUploadInput.value = '';
-
+  imgUploadForm.reset();
   editImage.classList.add('hidden');
   document.body.classList.remove('modal-open');
-
   resetScale();
   resetEffects();
   resetPristine();
@@ -77,7 +75,6 @@ function onError() {
 
 function onSuccess() {
   closeEditingImage();
-  resetInputValue();
   createSuccessMessage();
 }
 
@@ -92,10 +89,12 @@ function onEditImageFormSubmit(evt) {
   }
 }
 
-imgUploadForm.addEventListener('submit', onEditImageFormSubmit);
-
 const loadPhoto = () => {
-  imgUploadInput.addEventListener('change', onUploadPhotoChange);
+  imgUploadInput.addEventListener('change', (evt) => {
+    onUploadPhotoChange(evt);
+    loadImg (evt);
+  });
+  imgUploadForm.addEventListener('submit', onEditImageFormSubmit);
 };
 
 export { loadPhoto };

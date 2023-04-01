@@ -18,7 +18,7 @@ const isValidComment = (comment) => comment.length <= MAX_COMMENTS_LENGTH;
 const createHashtagArray = (value) => value.trim().split(' ').filter((item) => item);
 
 const checkIsHashtagRegexp = (hashtags) => {
-  if(!hashtags) {
+  if (!hashtags) {
     return true;
   }
   const hashtagArray = createHashtagArray(hashtags);
@@ -40,13 +40,7 @@ pristine.addValidator(hashtagField, checkHashtagLength, `Нельзя указа
 pristine.addValidator(hashtagField, checkHashtagSame, 'Один и тот же хэш-тег не может быть использован дважды');
 pristine.addValidator(textDescription, isValidComment, `Длинна комментария не должна превышать ${MAX_COMMENTS_LENGTH} символов`);
 
-const resetInputValue = () => {
-  hashtagField.value = '';
-  textDescription.value = '';
-  imgUploadForm.reset();
-};
-
 const resetPristine = () => pristine.reset();
 const validateForm = () => pristine.validate();
 
-export { validateForm, resetPristine, resetInputValue };
+export { validateForm, resetPristine };
