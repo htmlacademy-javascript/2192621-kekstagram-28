@@ -14,8 +14,9 @@ let comments = [];
 
 const fillCommentData = (comment) => {
   const commentClone = commentTemplate.cloneNode(true);
-  commentClone.querySelector('.social__picture').src = comment.avatar;
-  commentClone.querySelector('.social__picture').alt = comment.name;
+  const socialPicture = commentClone.querySelector('.social__picture');
+  socialPicture.src = comment.avatar;
+  socialPicture.alt = comment.name;
   commentClone.querySelector('.social__text').textContent = comment.message;
   return commentClone;
 };

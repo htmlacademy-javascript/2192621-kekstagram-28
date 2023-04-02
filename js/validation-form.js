@@ -15,7 +15,7 @@ const pristine = new Pristine(imgUploadForm, {
 
 const isValidComment = (comment) => comment.length <= MAX_COMMENTS_LENGTH;
 
-const createHashtagArray = (value) => value.trim().split(' ').filter((item) => item);
+const createHashtagArray = (value) => value.trim().toLowerCase().split(' ').filter((item) => item);
 
 const checkIsHashtagRegexp = (hashtags) => {
   if (!hashtags) {
