@@ -1,31 +1,32 @@
-import { isEscapeKey } from './util.js';
+import { isEscapeKey, renderMessage } from './util.js';
 
 const errorTemplate = document.querySelector('#error').content.querySelector('.error');
 const successTemplate = document.querySelector('#success').content.querySelector('.success');
 
-const renderMessage = (element) => document.body.append(element);
+let errorMessageClone;
+let successMessageClone;
 
 const createErrorMessage = () => {
-  const errorMessage = errorTemplate.cloneNode(true);
-  renderMessage(errorMessage);
-  document.querySelector('.error').addEventListener('click', onErrorMessageClick);
+  errorMessageClone = errorTemplate.cloneNode(true);
+  renderMessage(errorMessageClone);
+  errorMessageClone.addEventListener('click', onErrorMessageClick);
   document.addEventListener('keydown', onErrorMessageKeydown);
 };
 
 const removeErrorMessage = () => {
-  document.querySelector('.error').remove();
+  errorMessageClone.remove();
   document.removeEventListener('keydown', onErrorMessageKeydown);
 };
 
 const createSuccessMessage = () => {
-  const successMessage = successTemplate.cloneNode(true);
-  renderMessage(successMessage);
+  successMessageClone = successTemplate.cloneNode(true);
+  renderMessage(successMessageClone);
+  successMessageClone.addEventListener('click', onSuccessMessageClick);
   document.addEventListener('keydown', onSuccessMessageKeydown);
-  document.querySelector('.success').addEventListener('click', onSuccessMessageClick);
 };
 
 const removeSuccessMessage = () => {
-  document.querySelector('.success').remove();
+  successMessageClone.remove();
   document.removeEventListener('keydown', onSuccessMessageKeydown);
 };
 
