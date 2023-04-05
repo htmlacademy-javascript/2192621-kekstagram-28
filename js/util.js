@@ -33,6 +33,8 @@ const shuffleArray = (array) => {
   return array;
 };
 
+const renderMessage = (element) => document.body.append(element);
+
 const debounce = (callback, timeoutDelay = 500) => {
   let timeoutId;
   return (...rest) => {
@@ -41,4 +43,4 @@ const debounce = (callback, timeoutDelay = 500) => {
   };
 };
 
-export { isEscapeKey, showAlert, shuffleArray, debounce };
+export { isEscapeKey, showAlert, shuffleArray, debounce, renderMessage };
